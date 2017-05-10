@@ -93,6 +93,8 @@ For Each objFile in colFiles
 			AlertFileContent.LoadFromFile(AlertFile)
 			PostBody = AlertFileContent.ReadText()
 			PostBody = Replace(PostBody, "\", "\\")
+			PostBody = Replace(PostBody,vbCr,"")
+			PostBody = Replace(PostBody,vbLf,"")
 			AlertFileContent.Close
 
 			If Err.Number <> 0 Then

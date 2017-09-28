@@ -109,11 +109,12 @@ For Each objFile in colFiles
 			Else
 				' Send the alert file content to PagerDuty and check response
 
-				Set objHTTP = CreateObject("MSXML2.XMLHTTP.3.0")
+				Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
 
 				Err.Clear
 				WScript.Echo "Body being sent to PagerDuty is: " & vbNewLine & PostBody
 				objHTTP.Open "POST", URL, False
+				objHTTP.setRequestHeader "Content-Type", "application/json"
 				objHTTP.Send PostBody
 
 				' Log connection failures in case the system isn't able to resolve
